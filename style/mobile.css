@@ -1,0 +1,115 @@
+/* Phone layout. Only applies on screens up to 600px wide, so desktop is unchanged. */
+@media (max-width: 600px) {
+
+    /* Timer on top, the two stat cards in one row below it */
+    .main-section{
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        gap: 14px 12px;
+        margin-top: 24px;
+        padding: 0 14px;
+    }
+    .middle-section{
+        order: 1;
+        flex: 0 0 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Stat cards: compact horizontal cards instead of tall side columns */
+    .left-section,
+    .right-section{
+        order: 2;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        justify-items: start;
+        column-gap: 10px;
+        row-gap: 0;
+        width: calc(50% - 20px);
+        max-width: 170px;
+        min-height: 0;
+        padding: 8px 12px;
+        border-radius: 14px;
+    }
+    .left-section > :nth-child(1),
+    .right-section > :nth-child(1){
+        grid-column: 1;
+        grid-row: 1 / 3;
+        width: 26px;
+    }
+    .left-section > :nth-child(2),
+    .right-section > :nth-child(2){
+        grid-column: 2 / 4;
+        grid-row: 1;
+        font-size: 9px;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        margin: 0;
+    }
+    .left-section > :nth-child(3),
+    .right-section > :nth-child(3){
+        grid-column: 2;
+        grid-row: 2;
+        font-size: 20px;
+        line-height: 1.1;
+        margin: 0;
+    }
+    .left-section > :nth-child(4),
+    .right-section > :nth-child(4){
+        grid-column: 3;
+        grid-row: 2;
+        font-size: 10px;
+        margin: 0;
+        align-self: end;
+    }
+
+    /* Mode bar: icon above text so four items fit */
+    .foot-box{
+        width: 94vw;
+        height: auto;
+        min-height: 74px;
+        gap: 2px;
+        padding: 8px 6px;
+    }
+    .focus-box,
+    .short-break,
+    .long-break,
+    .edit{
+        flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+        padding: 4px 2px;
+        text-align: center;
+    }
+    .focus-box .desc,
+    .short-break .desc,
+    .long-break .desc,
+    .edit .desc{
+        line-height: 1.3;
+        text-align: center;
+    }
+    .sb{
+        font-size: 9px;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+    }
+    .mins0,
+    .mins1,
+    .mins2,
+    .mins3{
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    .focus-break-img,
+    .water-break-img,
+    .coffe-break-img,
+    .edit-img{
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+    }
+}
