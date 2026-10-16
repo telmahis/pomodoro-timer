@@ -1,0 +1,1195 @@
+/* ===== Shared Custom Scrollbar ===== */
+/* Applies to every scrollable panel (Settings, Music, Calendar/Task side panel) */
+.settings-panel,
+.music-content,
+.panel-content{
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--music-a) var(--input-bg);
+}
+.settings-panel::-webkit-scrollbar,
+.music-content::-webkit-scrollbar,
+.panel-content::-webkit-scrollbar{
+    width: 8px;
+}
+.settings-panel::-webkit-scrollbar-track,
+.music-content::-webkit-scrollbar-track,
+.panel-content::-webkit-scrollbar-track{
+    background: var(--input-bg);
+    border-radius: 8px;
+}
+.settings-panel::-webkit-scrollbar-thumb,
+.music-content::-webkit-scrollbar-thumb,
+.panel-content::-webkit-scrollbar-thumb{
+    background: rgba(var(--accent-rgb), 0.6);
+    border-radius: 8px;
+}
+.settings-panel::-webkit-scrollbar-thumb:hover,
+.music-content::-webkit-scrollbar-thumb:hover,
+.panel-content::-webkit-scrollbar-thumb:hover{
+    background: rgba(var(--accent-rgb), 0.85);
+}
+
+/* ===== Floating Icon Buttons ===== */
+.top-left-controls{
+    position: fixed;
+    top: clamp(10px, 2vh, 20px);
+    left: clamp(10px, 2vw, 20px);
+    z-index: 40;
+    display: flex;
+    gap: 10px;
+}
+.settings-btn,
+.music-btn,
+.panel-toggle-btn,
+.theme-mode-btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border-strong);
+    background: var(--input-bg);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+.top-right-controls{
+    position: fixed;
+    top: clamp(10px, 2vh, 20px);
+    right: clamp(10px, 2vw, 20px);
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.settings-btn:hover,
+.music-btn:hover,
+.panel-toggle-btn:hover,
+.theme-mode-btn:hover{
+    transform: scale(1.08);
+    background: var(--card-bg-strong);
+}
+.settings-icon,
+.music-icon,
+.panel-toggle-icon{
+    width: 20px;
+    height: 20px;
+}
+
+/* ---- Dark/Light toggle button ---- */
+.theme-mode-btn{
+    position: relative;
+}
+.theme-mode-icon{
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: opacity 0.25s, transform 0.25s;
+}
+.theme-mode-icon.icon-sun{
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5) rotate(-90deg);
+}
+.theme-mode-icon.icon-moon{
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+}
+html[data-theme="light"] .theme-mode-icon.icon-sun{
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+}
+html[data-theme="light"] .theme-mode-icon.icon-moon{
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5) rotate(90deg);
+}
+
+/* ---- Log in pill button (nav) ---- */
+.header-login-btn{
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid var(--card-border-strong);
+    background: var(--input-bg);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px 0 12px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    font-size: 13px;
+    font-weight: 600;
+    max-width: 160px;
+}
+.header-login-btn:hover{
+    transform: scale(1.04);
+    background: var(--card-bg-strong);
+}
+.login-icon{
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+.header-login-label{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.header-login-btn.signed-in{
+    border-color: rgba(var(--accent-rgb), 0.5);
+}
+.header-login-btn.signed-in .login-icon{
+    color: var(--accent);
+}
+
+/* ===== Settings Modal ===== */
+.settings-modal{
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.settings-modal.open{
+    display: flex;
+}
+.settings-overlay{
+    position: absolute;
+    inset: 0;
+    background: var(--modal-overlay);
+    backdrop-filter: blur(4px);
+}
+.settings-panel{
+    position: relative;
+    z-index: 1;
+    width: min(360px, 88vw);
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--modal-bg);
+    border: 1px solid var(--card-border-strong);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    box-sizing: border-box;
+}
+.settings-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.settings-header-title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.settings-header-icon{
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+.settings-header h3{
+    color: var(--text-primary);
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.settings-close,
+.login-close{
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+}
+.settings-body{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ---- Account / Cloud Sync ---- */
+.settings-account{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.account-title{
+    color: var(--text-secondary);
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin: 0 0 2px 0;
+}
+.account-input{
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--input-bg);
+    border: 1px solid var(--card-border-strong);
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: var(--text-primary);
+    font-size: 13px;
+}
+.account-input::placeholder{
+    color: var(--text-muted);
+}
+.account-signed-out{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.account-actions{
+    display: flex;
+    gap: 8px;
+}
+.account-actions button{
+    flex: 1;
+    border: 1px solid var(--card-border-strong);
+    background: var(--input-bg);
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.account-signin-btn:hover,
+.account-signup-btn:hover{
+    background: rgba(255,255,255,0.14);
+}
+.account-signup-btn{
+    background: rgba(var(--accent-rgb), 0.15);
+    border-color: rgba(var(--accent-rgb), 0.4);
+}
+.account-signup-btn:hover{
+    background: rgba(var(--accent-rgb), 0.28);
+}
+.account-error{
+    color: rgb(255,120,120);
+    font-size: 12px;
+    margin: 0;
+    min-height: 14px;
+}
+.account-error.success{
+    color: #4ade80;
+}
+.account-signed-in{
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+}
+.account-email{
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+}
+.account-sync-status{
+    color: #1d7409;
+    font-size: 11px;
+    margin: 0 0 6px 0;
+}
+.account-signout-btn{
+    align-self: flex-start;
+    border: 1px solid var(--card-border-strong);
+    background: var(--input-bg);
+    color: var(--text-secondary);
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.account-signout-btn:hover{
+    background: rgba(255,255,255,0.14);
+}
+
+.settings-divider{
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 4px 0;
+}
+
+/* ---- Theme Color Picker ---- */
+.settings-theme{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.theme-swatches{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.theme-swatch{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--swatch);
+    border: 2px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s, border-color 0.15s;
+    position: relative;
+}
+.theme-swatch:hover{
+    transform: scale(1.12);
+}
+.theme-swatch.active{
+    border-color: var(--text-primary);
+    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.5);
+}
+.theme-swatch.active::after{
+    content: '\2713';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* ---- Background Picker ---- */
+.settings-bg{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.settings-bg .setting-row-desc{
+    margin-top: -4px;
+}
+.bg-subtitle{
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    margin: 6px 0 0 0;
+}
+
+/* Solid color swatches — same visual language as the accent-color picker */
+.bg-swatches{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.bg-swatch{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--swatch, var(--card-bg-strong));
+    border: 2px solid var(--card-border-strong);
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    transition: transform 0.15s, border-color 0.15s;
+}
+.bg-swatch:hover{
+    transform: scale(1.12);
+}
+.bg-swatch.active{
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.5);
+}
+.bg-swatch.active::after{
+    content: '\2713';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+.bg-swatch-default{
+    background: var(--card-bg-strong);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bg-swatch-default svg{
+    width: 14px;
+    height: 14px;
+}
+/* When Default is active, its own checkmark is enough — don't also show
+   the diagonal "no background" icon underneath it */
+.bg-swatch-default.active svg{
+    display: none;
+}
+
+/* Image thumbnails */
+.bg-thumbnails{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 10px;
+}
+.bg-thumb{
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    border: 2px solid var(--card-border-strong);
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.bg-thumb:hover{
+    transform: scale(1.04);
+}
+.bg-thumb.active{
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.5), 0 0 12px rgba(var(--accent-rgb), 0.35);
+}
+.bg-thumb.active::after{
+    content: '\2713';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.bg-thumb-empty{
+    grid-column: 1 / -1;
+    color: var(--text-muted);
+    font-size: 12px;
+    padding: 6px 0;
+}
+
+/* Upload custom background */
+.bg-upload-row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2px;
+}
+.bg-upload-btn{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card-bg-strong);
+    border: 1.5px dashed var(--card-border-strong);
+    border-radius: 10px;
+    padding: 8px 14px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+.bg-upload-btn:hover{
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+.bg-upload-btn svg{
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+.bg-remove-custom-btn{
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.15s;
+}
+.bg-remove-custom-btn:hover{
+    color: var(--accent);
+}
+.bg-upload-hint{
+    color: var(--text-muted);
+    font-size: 11px;
+    margin: 0;
+    min-height: 14px;
+}
+.bg-upload-hint.error{
+    color: rgb(255,120,120);
+}
+
+@media (max-width: 480px){
+    .bg-thumbnails{
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    }
+    .bg-upload-row{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .bg-upload-btn{
+        justify-content: center;
+    }
+}
+
+/* ---- Setting Row (card layout: icon + text + control) ---- */
+.setting-row{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    transition: background 0.2s;
+}
+.setting-row:hover{
+    background: var(--card-bg-strong);
+}
+.setting-row-icon{
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    background: var(--card-bg-strong);
+}
+.setting-row-icon svg{
+    width: 18px;
+    height: 18px;
+}
+.setting-row-text{
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.setting-row-title{
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+.setting-row-desc{
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* ---- Toggle Switch ---- */
+.toggle-switch{
+    position: relative;
+    flex-shrink: 0;
+    width: 44px;
+    height: 26px;
+    cursor: pointer;
+}
+.toggle-switch input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.toggle-slider{
+    position: absolute;
+    inset: 0;
+    background: var(--card-bg-strong);
+    border: 1px solid var(--card-border-strong);
+    border-radius: 999px;
+    transition: background 0.2s;
+}
+.toggle-slider::before{
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+.toggle-switch input:checked + .toggle-slider{
+    background: var(--accent);
+    border-color: var(--accent);
+}
+.toggle-switch input:checked + .toggle-slider::before{
+    transform: translateX(18px);
+    background: white;
+}
+
+/* ---- Dropdown Select ---- */
+.setting-select{
+    flex-shrink: 0;
+    background: var(--input-bg);
+    border: 1px solid var(--card-border-strong);
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: var(--text-primary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+.setting-select:hover,
+.setting-select:focus{
+    border-color: var(--accent);
+    outline: none;
+}
+
+/* ---- Theme Mode Cards (Dark / White) ---- */
+.setting-row-theme{
+    align-items: flex-start;
+}
+.theme-mode-cards{
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.theme-mode-card{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card-bg-strong);
+    border: 1.5px solid var(--card-border-strong);
+    border-radius: 10px;
+    padding: 8px 14px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+.theme-mode-card svg{
+    width: 15px;
+    height: 15px;
+}
+.theme-mode-card:hover{
+    color: var(--text-primary);
+}
+.theme-mode-card.active{
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+/* ---- Save Button ---- */
+.settings-save{
+    margin-top: 18px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 25px;
+    padding: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+.settings-save svg{
+    width: 16px;
+    height: 16px;
+}
+.settings-save:hover{
+    transform: scale(1.02);
+}
+.settings-save:active{
+    transform: scale(0.98);
+}
+
+/* ---- Login Prompt (bottom of Settings) ---- */
+.settings-login-prompt{
+    margin: 14px 0 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--card-border);
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+.settings-login-signed-in-prompt{
+    display: none;
+}
+.settings-login-link,
+.settings-signout-link{
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+}
+.settings-signed-in-email{
+    color: var(--text-primary);
+}
+
+/* ===== Login Modal ===== */
+.login-modal{
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.login-modal.open{
+    display: flex;
+}
+.login-overlay{
+    position: absolute;
+    inset: 0;
+    background: var(--modal-overlay);
+    backdrop-filter: blur(4px);
+}
+.login-panel{
+    position: relative;
+    z-index: 1;
+    width: min(360px, 88vw);
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--modal-bg);
+    border: 1px solid var(--card-border-strong);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--accent-rgb), 0.6) var(--input-bg);
+}
+.login-panel::-webkit-scrollbar{
+    width: 8px;
+}
+.login-panel::-webkit-scrollbar-track{
+    background: var(--input-bg);
+    border-radius: 8px;
+}
+.login-panel::-webkit-scrollbar-thumb{
+    background: rgba(var(--accent-rgb), 0.6);
+    border-radius: 8px;
+}
+.account-forgot-btn{
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.15s;
+}
+.account-forgot-btn:hover{
+    color: var(--accent);
+}
+
+/* ===== Profile Popover (compact card, signed-in state) ===== */
+.profile-popover{
+    position: fixed;
+    inset: 0;
+    z-index: 105;
+    display: none;
+}
+.profile-popover.open{
+    display: block;
+}
+.profile-popover-overlay{
+    position: absolute;
+    inset: 0;
+    background: transparent;
+}
+.profile-popover-card{
+    position: fixed;
+    top: calc(clamp(10px, 2vh, 20px) + 50px);
+    right: clamp(10px, 2vw, 20px);
+    z-index: 1;
+    width: 220px;
+    background: var(--modal-bg);
+    border: 1px solid var(--card-border-strong);
+    border-radius: 16px;
+    padding: 20px 16px 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+}
+.profile-avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+.profile-name-role{
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+.profile-email{
+    color: var(--text-muted);
+    font-size: 12px;
+    margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.profile-popover-card .settings-divider{
+    width: 100%;
+    margin: 12px 0 10px;
+}
+.profile-signout-btn{
+    width: 100%;
+    background: var(--card-bg-strong);
+    border: 1px solid var(--card-border-strong);
+    border-radius: 10px;
+    padding: 8px 0;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.profile-signout-btn:hover{
+    background: rgba(var(--accent-rgb), 0.15);
+    color: var(--accent);
+}
+
+/* ===== Side Panel (Calendar + Current Task) ===== */
+.side-panel{
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+}
+.side-panel.open{
+    pointer-events: auto;
+}
+.panel-overlay{
+    position: absolute;
+    inset: 0;
+    background: var(--modal-overlay);
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+.side-panel.open .panel-overlay{
+    opacity: 1;
+}
+.panel-content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(300px, 85vw);
+    background: var(--modal-bg);
+    border-left: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    padding: 50px 20px 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+.side-panel.open .panel-content{
+    transform: translateX(0);
+}
+.panel-close{
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+}
+
+/* ---- Calendar Widget ---- */
+.calendar-widget{
+    margin-top: 10px;
+}
+.cal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.cal-header button{
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 8px;
+}
+.cal-month-label{
+    color: var(--text-primary);
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin: 0;
+}
+.cal-grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+.cal-weekday{
+    color: #888;
+    font-size: 10px;
+    text-align: center;
+}
+.cal-day{
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    color: var(--text-secondary);
+    border-radius: 6px;
+}
+.cal-day.empty{
+    visibility: hidden;
+}
+.cal-day.today{
+    border: 1px solid var(--accent);
+}
+.cal-day.has-sessions{
+    background: rgba(var(--accent-rgb), 0.12);
+}
+.cal-dot{
+    position: absolute;
+    bottom: 2px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* ---- Task List Widget ---- */
+.task-widget{
+    margin-top: 30px;
+}
+.task-label{
+    color: var(--text-secondary);
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin: 0 0 8px 0;
+}
+.task-input-row{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.new-task-input{
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+    background: var(--input-bg);
+    border: 1px solid var(--card-border-strong);
+    border-radius: 10px;
+    padding: 8px 10px;
+    color: var(--text-primary);
+    font-size: 13px;
+}
+.new-task-input::placeholder{
+    color: var(--text-muted);
+}
+.add-task-btn{
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border-strong);
+    background: rgba(255,255,255,0.05);
+    color: var(--text-primary);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.add-task-btn:hover{
+    background: rgba(255,255,255,0.14);
+}
+
+.task-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+.task-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 6px;
+    border-radius: 8px;
+    transition: background 0.15s;
+}
+.task-item:hover{
+    background: rgba(255,255,255,0.04);
+}
+
+.task-checkbox{
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, background 0.15s;
+}
+.task-checkbox:hover{
+    border-color: var(--accent);
+}
+.task-checkbox.checked{
+    background: var(--accent);
+    border-color: var(--accent);
+}
+.task-checkbox svg{
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+}
+.task-checkbox.checked svg{
+    opacity: 1;
+}
+
+.task-text{
+    flex: 1;
+    min-width: 0;
+    color: #eee;
+    font-size: 13px;
+    word-break: break-word;
+}
+.task-item.completed .task-text{
+    color: #666;
+    text-decoration: line-through;
+}
+
+.task-delete{
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s, color 0.15s;
+}
+.task-item:hover .task-delete{
+    opacity: 1;
+}
+.task-delete:hover{
+    color: var(--accent);
+}
+
+.task-empty{
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px){
+    /* Nav: shrink gaps so 3 left icons + right cluster never collide */
+    .top-left-controls{
+        gap: 6px;
+    }
+    .top-right-controls{
+        gap: 6px;
+    }
+    .settings-btn,
+    .music-btn,
+    .panel-toggle-btn,
+    .theme-mode-btn{
+        width: 34px;
+        height: 34px;
+    }
+    .header-login-btn{
+        height: 34px;
+        max-width: 40px;
+        padding: 0;
+        justify-content: center;
+    }
+    /* Hide the text label, icon-only pill, so it never overflows */
+    .header-login-btn .header-login-label{
+        display: none;
+    }
+
+    /* Setting rows: allow the control to wrap onto its own line rather
+       than compressing the description into an unreadable sliver */
+    .setting-row{
+        flex-wrap: wrap;
+    }
+    .setting-row-text{
+        min-width: 140px;
+    }
+    .setting-select{
+        margin-left: 50px; /* aligns under the text, past the icon column */
+    }
+    .setting-row-theme{
+        flex-wrap: wrap;
+    }
+    .theme-mode-cards{
+        margin-left: 50px;
+        width: 100%;
+    }
+    .theme-mode-card{
+        flex: 1;
+        justify-content: center;
+    }
+
+    /* Modals: a little less side padding, and cap height so they never
+       demand horizontal scrolling or spill past a short viewport */
+    .settings-panel,
+    .login-panel,
+    .music-content{
+        width: min(340px, 92vw);
+        padding: 16px;
+        max-height: 90vh;
+    }
+
+    .account-actions{
+        flex-direction: column;
+    }
+}

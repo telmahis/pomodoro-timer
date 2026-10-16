@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+
+    <link rel="icon" type="image/png" href="./photos/tomato-logo.png">
+
+    <link rel="stylesheet" href="./style/header.section.css">
+    <link rel="stylesheet" href="./style/general.css">
+    <link rel="stylesheet" href="./style/main-section.css">
+    <link rel="stylesheet" href="./style/footer.css">
+    <link rel="stylesheet" href="./style/extra-features.css">
+    <link rel="stylesheet" href="./style/music.css">
+    <link rel="stylesheet" href="./style/login.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <img src="./photos/menu.png" alt="" class="menu-hamburger">
+        </div>
+    </nav>
+
+    <div class="top-left-controls">
+        <button class="settings-btn" aria-label="Open settings">
+            <svg viewBox="0 0 24 24" class="settings-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6c.5-.18 1-.28 1-1V3a2 2 0 0 1 4 0v.09c0 .69.5.82 1 1a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.18.5.83 1 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+        </button>
+
+        <button class="music-btn" aria-label="Open music player">
+            <svg viewBox="0 0 24 24" class="music-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+        </button>
+
+        <button class="theme-mode-btn" aria-label="Toggle light/dark mode">
+            <svg viewBox="0 0 24 24" class="theme-mode-icon icon-sun" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+            <svg viewBox="0 0 24 24" class="theme-mode-icon icon-moon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div class="top-right-controls">
+        <button class="panel-toggle-btn" aria-label="Open calendar and current task">
+            <svg viewBox="0 0 24 24" class="panel-toggle-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+        </button>
+
+        <button class="header-login-btn" aria-label="Log in">
+            <svg viewBox="0 0 24 24" class="login-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="header-login-label">Log in</span>
+        </button>
+    </div>
+
+    <header class="header-section">
+        <img src="./photos/tomato-logo.png" alt="#" class="first-pic-and-mainone">
+        <h2>POMODORO <span>TIMER</span></h2>
+        <p>FOCUS &#8226 WORK &#8226 ACHIEVE</p>
+    </header>
+
+    <main class="main-section" >
+        <div class="left-section">
+            <img src="./icons/presentation-de-lentreprise.png" alt="" class="seassion-icon">
+            <p  class="seassion-p">SEASSIONS</p>
+            <P class="number-p">0</P>
+            <P  class="completed-p">Completed</P>
+        </div>
+        <div class="middle-section">
+
+           <div class="timer-box">
+                <svg class="progress-ring" viewBox="0 0 100 100">
+                    <circle class="ring-track" cx="50" cy="50" r="45"></circle>
+                    <circle class="ring-progress" cx="50" cy="50" r="45"></circle>
+                </svg>
+                <div class="timer-content">
+                    <p class="focus-time">FOCUS TIME</p>
+                    <div class="dash">&#x2014</div>
+                    <p class="timer">25:00</p>
+                    <div class="ring">
+                        <img src="./icons/bell-regular.png" alt="" class="ring-img">
+                        <p class="ttt">Time to focus</p>
+                    </div>
+                </div>
+           </div>
+
+           <div class="start-restart">
+            <button class="start">
+                <img src="./icons/joue.png" alt="" class="play-icon">
+                <p class="start-p">START</p>
+            </button>
+             <button class="restart"><img src="./icons/rejouer (1).png" alt="" class="replay-icon"></button>
+           </div>
+        </div>
+        <div class="right-section">
+            <img src="./icons/fire-solid.png" alt="" class="streak-icon">
+            <p class="streak-p">STREAK</p>
+            <P class="number-p">0</P>
+            <P class="days-p">Days</P>
+        </div>
+
+    </main>
+
+    <footer class="footer-section">
+        <div class="foot-box">
+            <div class="focus-box">
+                <img src="./icons/target.png" alt="" class="focus-break-img">
+                <div class="desc">
+                    <p class="sb">FOCUS</p>
+                    <p class="mins0">25 min</p>
+                </div>
+            </div>
+            <div class="short-break">
+                <img src="./icons/mug-avec-coeur.png" alt="" class="water-break-img">
+                <div class="desc">
+                    <p class="sb">SHORT BREAK</p>
+                    <p class="mins1">5 min</p>
+                </div>
+            </div>
+            <div class="long-break">
+                <img src="./icons/mug-chaud.png" alt="" class="coffe-break-img">
+                <div class="desc">
+                    <p class="sb">LONG BREAK</p>
+                    <p class="mins2">15 min</p>
+                </div>
+            </div>
+            <div class="edit">
+                <img src="./icons/editer-le-texte.png" alt="" class="edit-img">
+                <div class="desc">
+                    <p class="sb">CUSTOM</p>
+                    <p class="mins3">edit</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-line">
+            <p>Stay focused. Get things done.</p>
+        </div>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div class="settings-modal">
+        <div class="settings-overlay"></div>
+        <div class="settings-panel">
+            <div class="settings-header">
+                <div class="settings-header-title">
+                    <svg viewBox="0 0 24 24" class="settings-header-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6c.5-.18 1-.28 1-1V3a2 2 0 0 1 4 0v.09c0 .69.5.82 1 1a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.18.5.83 1 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    <h3>Settings</h3>
+                </div>
+                <button class="settings-close" aria-label="Close settings">&times;</button>
+            </div>
+            <div class="settings-body">
+                <div class="setting-row">
+                    <div class="setting-row-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    </div>
+                    <div class="setting-row-text">
+                        <span class="setting-row-title">Sound Notifications</span>
+                        <span class="setting-row-desc">Play a sound when the timer starts and ends</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="settings-sound" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-row-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
+                    </div>
+                    <div class="setting-row-text">
+                        <span class="setting-row-title">Pomodoro Duration</span>
+                        <span class="setting-row-desc">Time for one focus session</span>
+                    </div>
+                    <select class="setting-select" id="settings-focus">
+                        <option value="15">15 minutes</option>
+                        <option value="20">20 minutes</option>
+                        <option value="25" selected>25 minutes</option>
+                        <option value="30">30 minutes</option>
+                        <option value="45">45 minutes</option>
+                        <option value="60">60 minutes</option>
+                    </select>
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-row-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="2" x2="6" y2="4"></line><line x1="10" y1="2" x2="10" y2="4"></line><line x1="14" y1="2" x2="14" y2="4"></line></svg>
+                    </div>
+                    <div class="setting-row-text">
+                        <span class="setting-row-title">Short Break Duration</span>
+                        <span class="setting-row-desc">Time for a short break</span>
+                    </div>
+                    <select class="setting-select" id="settings-short">
+                        <option value="3">3 minutes</option>
+                        <option value="5" selected>5 minutes</option>
+                        <option value="10">10 minutes</option>
+                        <option value="15">15 minutes</option>
+                    </select>
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-row-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8c0-2-1-4-5-4S7 6 7 8s1 3 1 5-1 5-1 5 2 2 5 2 5-2 5-2-1-3-1-5 1-3 1-5z"></path><path d="M4 21h16"></path></svg>
+                    </div>
+                    <div class="setting-row-text">
+                        <span class="setting-row-title">Long Break Duration</span>
+                        <span class="setting-row-desc">Time for a long break</span>
+                    </div>
+                    <select class="setting-select" id="settings-long">
+                        <option value="10">10 minutes</option>
+                        <option value="15" selected>15 minutes</option>
+                        <option value="20">20 minutes</option>
+                        <option value="30">30 minutes</option>
+                    </select>
+                </div>
+
+                <hr class="settings-divider">
+
+                <div class="setting-row setting-row-theme">
+                    <div class="setting-row-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="7" cy="12" r="1"></circle><circle cx="12" cy="8" r="1"></circle><circle cx="16" cy="11" r="1"></circle><circle cx="12" cy="16" r="1"></circle></svg>
+                    </div>
+                    <div class="setting-row-text">
+                        <span class="setting-row-title">Theme / Color</span>
+                        <span class="setting-row-desc">Choose your preferred theme</span>
+                    </div>
+                    <div class="theme-mode-cards">
+                        <button class="theme-mode-card" data-theme-mode="dark">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                            Dark
+                        </button>
+                        <button class="theme-mode-card" data-theme-mode="light">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+                            White
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-theme">
+                    <p class="account-title">Accent Color</p>
+                    <div class="theme-swatches">
+                        <button class="theme-swatch" data-color="240, 41, 41" style="--swatch: rgb(240, 41, 41)" aria-label="Red"></button>
+                        <button class="theme-swatch" data-color="230, 126, 34" style="--swatch: rgb(230, 126, 34)" aria-label="Orange"></button>
+                        <button class="theme-swatch" data-color="241, 196, 15" style="--swatch: rgb(241, 196, 15)" aria-label="Yellow"></button>
+                        <button class="theme-swatch" data-color="46, 204, 113" style="--swatch: rgb(46, 204, 113)" aria-label="Green"></button>
+                        <button class="theme-swatch" data-color="26, 188, 156" style="--swatch: rgb(26, 188, 156)" aria-label="Teal"></button>
+                        <button class="theme-swatch" data-color="52, 152, 219" style="--swatch: rgb(52, 152, 219)" aria-label="Blue"></button>
+                        <button class="theme-swatch" data-color="155, 89, 182" style="--swatch: rgb(155, 89, 182)" aria-label="Purple"></button>
+                        <button class="theme-swatch" data-color="236, 64, 122" style="--swatch: rgb(236, 64, 122)" aria-label="Pink"></button>
+                    </div>
+                </div>
+
+                <div class="settings-bg">
+                    <p class="account-title">Background</p>
+                    <span class="setting-row-desc">Choose the background for your focus environment</span>
+
+                    <div class="bg-swatches">
+                        <button class="bg-swatch bg-swatch-default" data-bg-type="default" aria-label="Default background" title="Default">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20L20 4M4 4l16 16"></path></svg>
+                        </button>
+                        <button class="bg-swatch" data-bg-type="color" data-bg-value="#0b1226" style="--swatch: #0b1226" aria-label="Deep Navy" title="Deep Navy"></button>
+                        <button class="bg-swatch" data-bg-type="color" data-bg-value="#000000" style="--swatch: #000000" aria-label="Black" title="Black"></button>
+                        <button class="bg-swatch" data-bg-type="color" data-bg-value="#1c1c1e" style="--swatch: #1c1c1e" aria-label="Dark Gray" title="Dark Gray"></button>
+                        <button class="bg-swatch" data-bg-type="color" data-bg-value="#0f2f1f" style="--swatch: #0f2f1f" aria-label="Forest Green" title="Forest Green"></button>
+                        <button class="bg-swatch" data-bg-type="color" data-bg-value="#3b0a14" style="--swatch: #3b0a14" aria-label="Burgundy" title="Burgundy"></button>
+                        <button class="bg-swatch" data-bg-type="color" data-bg-value="#241035" style="--swatch: #241035" aria-label="Purple" title="Purple"></button>
+                    </div>
+
+                    <div class="bg-upload-row">
+                        <label class="bg-upload-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                            <span>Upload your own</span>
+                            <input type="file" accept="image/jpeg,image/jpg,image/png,image/webp" class="bg-upload-input" hidden>
+                        </label>
+                        <button class="bg-remove-custom-btn" hidden>Remove custom background</button>
+                    </div>
+                    <p class="bg-upload-hint"></p>
+                </div>
+            </div>
+            <button class="settings-save">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                Save changes
+            </button>
+
+            <p class="settings-login-prompt">
+                <span class="settings-login-signed-out">Not a member yet? <button class="settings-login-link">Log in</button> to sync your progress.</span>
+                <span class="settings-login-signed-in-prompt">Signed in as <strong class="settings-signed-in-email"></strong> · <button class="settings-signout-link">Sign out</button></span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal">
+        <div class="login-overlay"></div>
+        <div class="login-panel" data-mode="login">
+            <button class="login-close" aria-label="Close login">&times;</button>
+
+            <div class="settings-account">
+                <div class="account-signed-out">
+                    <div class="auth-heading">
+                        <h3 class="auth-title">Welcome Back</h3>
+                        <p class="auth-subtitle">Login to continue to your account</p>
+                    </div>
+
+                    <form class="auth-form" novalidate>
+                        <div class="auth-field auth-field-name">
+                            <svg class="auth-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <input type="text" class="auth-name" placeholder="Your name" autocomplete="name" maxlength="40" tabindex="-1">
+                        </div>
+
+                        <div class="auth-field">
+                            <svg class="auth-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><polyline points="3 7 12 13 21 7"></polyline></svg>
+                            <input type="email" class="auth-email" placeholder="Email" autocomplete="email">
+                        </div>
+
+                        <div class="auth-field">
+                            <svg class="auth-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+                            <input type="password" class="auth-password" placeholder="Password" autocomplete="current-password">
+                            <button type="button" class="auth-eye" aria-label="Show password">
+                                <svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <svg class="eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                            </button>
+                        </div>
+
+                        <div class="auth-signup-extra">
+                            <div class="auth-field">
+                                <svg class="auth-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                                <input type="password" class="auth-confirm" placeholder="Confirm password" autocomplete="new-password" tabindex="-1">
+                            </div>
+
+                            <div class="auth-strength">
+                                <div class="auth-strength-bar"><span class="auth-strength-fill"></span></div>
+                                <span class="auth-strength-label">Enter a password</span>
+                            </div>
+
+                            <ul class="auth-rules">
+                                <li data-rule="length"><span class="auth-rule-dot"></span>At least 6 characters</li>
+                                <li data-rule="mix"><span class="auth-rule-dot"></span>A letter and a number</li>
+                                <li data-rule="match"><span class="auth-rule-dot"></span>Passwords match</li>
+                            </ul>
+                        </div>
+
+                        <div class="auth-forgot-row">
+                            <button type="button" class="account-forgot-btn">Forgot Password?</button>
+                        </div>
+
+                        <p class="account-error"></p>
+
+                        <button type="submit" class="auth-submit">
+                            <span class="auth-submit-label">Login</span>
+                            <span class="auth-spinner"></span>
+                        </button>
+                    </form>
+
+                    <div class="auth-divider"><span>OR CONTINUE WITH</span></div>
+
+                    <div class="auth-social">
+                        <button type="button" class="auth-social-btn" data-provider="google" aria-label="Continue with Google" title="Google">
+                            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+                        </button>
+                        </div>
+
+                    <p class="auth-switch">
+                        <span class="auth-switch-login">Don't have an account? <button type="button" class="auth-switch-btn" data-goto="signup">Sign Up</button></span>
+                        <span class="auth-switch-signup">Already have an account? <button type="button" class="auth-switch-btn" data-goto="login">Log In</button></span>
+                    </p>
+                </div>
+
+                <div class="account-signed-in">
+                    <p class="account-email"></p>
+                    <p class="account-sync-status">Synced</p>
+                    <button class="account-signout-btn">Sign Out</button>
+                </div>
+            </div>
+
+            <div class="auth-success" aria-live="polite">
+                <svg class="auth-success-check" viewBox="0 0 52 52"><circle class="auth-success-circle" cx="26" cy="26" r="24" fill="none"/><path class="auth-success-tick" fill="none" d="M14 27l8 8 16-17"/></svg>
+                <h3 class="auth-success-title">Account created!</h3>
+                <p class="auth-success-text">Welcome aboard</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Popover (shown instead of the login modal once signed in) -->
+    <div class="profile-popover">
+        <div class="profile-popover-overlay"></div>
+        <div class="profile-popover-card">
+            <div class="profile-avatar"></div>
+            <p class="profile-name-role"></p>
+            <p class="profile-email"></p>
+            <hr class="settings-divider">
+            <button class="profile-signout-btn">Sign out</button>
+        </div>
+    </div>
+
+    <!-- Music Panel -->
+    <div class="music-panel">
+        <div class="music-overlay"></div>
+        <div class="music-content music-content-dashboard">
+            <div class="music-header">
+                <div class="music-header-title">
+                    <svg class="music-header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                    <div>
+                        <h3>Music</h3>
+                        <p class="music-tagline">Boost your focus with your favorite sound</p>
+                    </div>
+                </div>
+                <button class="music-close" aria-label="Close music player">&times;</button>
+            </div>
+
+            <div class="music-tabs">
+                <button class="music-tab active" data-tab="youtube">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12Z"/></svg>
+                    YouTube
+                </button>
+                <button class="music-tab" data-tab="spotify">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.72 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    Spotify
+                </button>
+                <button class="music-tab" data-tab="local">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                    My Music
+                </button>
+            </div>
+
+            <div class="music-dashboard">
+                <div class="music-dashboard-left">
+                    <div class="music-search-row">
+                        <svg class="music-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" class="music-search-input" placeholder="Search for songs, artists, or playlists...">
+                    </div>
+
+                    <div class="music-list-section" data-tab-panel="youtube">
+                        <div class="music-list-heading"><span>Your YouTube picks</span></div>
+                        <div class="music-list" data-list="youtube"></div>
+                    </div>
+
+                    <div class="music-list-section" data-tab-panel="spotify" hidden>
+                        <div class="music-list-heading"><span>Your Spotify picks</span></div>
+                        <div class="music-list" data-list="spotify"></div>
+                    </div>
+
+                    <div class="music-list-section" data-tab-panel="local" hidden>
+                        <div class="music-list-heading"><span>Local tracks</span></div>
+                        <div class="music-list" data-list="local"></div>
+                    </div>
+
+                </div>
+
+                <div class="music-dashboard-right">
+                    <div class="now-playing-card">
+                        <div class="now-playing-art">
+                            <img class="now-playing-thumb" src="" alt="" hidden>
+                            <svg class="now-playing-art-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                        </div>
+                        <div class="now-playing-info">
+                            <p class="now-playing-title">Nothing loaded yet</p>
+                            <p class="now-playing-subtitle">Pick a track or paste a link below</p>
+                            <p class="now-playing-source"></p>
+                        </div>
+                    </div>
+
+                    <!-- Local file playback -->
+                    <audio class="bg-audio" preload="none"></audio>
+                    <!-- YouTube plays here via the IFrame API, positioned off-screen — the
+                         card above shows our own thumbnail/title instead of the raw video -->
+                    <div class="now-playing-yt-mount"></div>
+                    <!-- Spotify's own embed (it has its own play/seek controls we can't
+                         override, so we show it directly rather than a fake control set) -->
+                    <div class="now-playing-spotify-mount"></div>
+
+                    <div class="now-playing-transport-block">
+                        <div class="now-playing-progress-row">
+                            <input type="range" class="now-playing-progress" min="0" max="100" value="0" step="0.1" aria-label="Seek">
+                        </div>
+                        <div class="now-playing-time-row">
+                            <span class="now-playing-time-current">0:00</span>
+                            <span class="now-playing-time-duration">0:00</span>
+                        </div>
+
+                        <div class="now-playing-controls">
+                            <button class="music-shuffle" aria-label="Shuffle">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+                            </button>
+                            <button class="music-prev" aria-label="Previous track">&#9198;</button>
+                            <button class="music-play-pause" aria-label="Play">&#9654;</button>
+                            <button class="music-next" aria-label="Next track">&#9197;</button>
+                            <button class="music-repeat" aria-label="Repeat">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                            </button>
+                        </div>
+
+                        <div class="now-playing-volume-row">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="volume-icon"><path d="M3 10v4h4l5 5V5L7 10H3z"></path></svg>
+                            <input type="range" class="music-volume" min="0" max="1" step="0.01" value="0.5" aria-label="Volume">
+                        </div>
+                    </div>
+
+                    <hr class="settings-divider">
+
+                    <div class="music-link-box">
+                        <p class="music-link-label">Or paste a YouTube or Spotify link</p>
+                        <div class="music-link-row">
+                            <input type="text" class="music-link-input" placeholder="Paste link here...">
+                            <button class="music-link-load">Load</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar + Current Task Side Panel -->
+    <div class="side-panel">
+        <div class="panel-overlay"></div>
+        <div class="panel-content">
+            <button class="panel-close" aria-label="Close panel">&times;</button>
+
+            <div class="calendar-widget">
+                <div class="cal-header">
+                    <button class="cal-prev" aria-label="Previous month">&#8592;</button>
+                    <p class="cal-month-label">Month Year</p>
+                    <button class="cal-next" aria-label="Next month">&#8594;</button>
+                </div>
+                <div class="cal-grid"></div>
+            </div>
+
+            <div class="task-widget">
+                <p class="task-label">TASKS</p>
+                <div class="task-input-row">
+                    <input type="text" class="new-task-input" placeholder="Add a task...">
+                    <button class="add-task-btn" aria-label="Add task">+</button>
+                </div>
+                <ul class="task-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/settings-features.js"></script>
+    <script type="module" src="./scripts/features.js"></script>
+    <script type="module" src="./scripts/login.js"></script>
+    <script type="module" src="./scripts/cloud.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+</body>
+</html>

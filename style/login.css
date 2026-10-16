@@ -1,0 +1,560 @@
+/* ===== Login / Sign-up modal (neumorphic card) =====
+   Loaded after extra-features.css, so these rules override the old
+   compact login styles. Uses the same theme variables as the rest of the
+   site, so it follows dark/light mode and the accent colour. */
+
+.login-panel{
+    --auth-bg: linear-gradient(160deg, #1b2140 0%, #121830 100%);
+    --auth-card-bg: rgba(255,255,255,0.035);
+    --auth-field-bg: #151b36;
+    --auth-field-shadow: 5px 5px 12px rgba(0,0,0,0.45), -4px -4px 10px rgba(255,255,255,0.04);
+    --auth-field-focus: 0 0 0 2px rgba(var(--accent-rgb), 0.55), 5px 5px 12px rgba(0,0,0,0.45);
+    --auth-icon: #8f96b8;
+    --auth-btn-shadow: 0 10px 22px rgba(var(--accent-rgb), 0.35);
+    --auth-social-bg: #1a2142;
+    --auth-social-shadow: 5px 5px 12px rgba(0,0,0,0.45), -3px -3px 9px rgba(255,255,255,0.05);
+
+    width: min(400px, 92vw);
+    padding: 34px 26px 24px;
+    background: var(--auth-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 26px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+    overflow-x: hidden;
+}
+html[data-theme="light"] .login-panel{
+    --auth-bg: linear-gradient(160deg, #f6f5ff 0%, #ebe9fb 100%);
+    --auth-card-bg: rgba(255,255,255,0.55);
+    --auth-field-bg: #f3f2fd;
+    --auth-field-shadow: 6px 6px 14px rgba(150,145,200,0.28), -6px -6px 14px rgba(255,255,255,0.95);
+    --auth-field-focus: 0 0 0 2px rgba(var(--accent-rgb), 0.5), 6px 6px 14px rgba(150,145,200,0.28);
+    --auth-icon: #8b88ad;
+    --auth-btn-shadow: 0 10px 22px rgba(var(--accent-rgb), 0.3);
+    --auth-social-bg: #f6f5ff;
+    --auth-social-shadow: 6px 6px 14px rgba(150,145,200,0.28), -6px -6px 14px rgba(255,255,255,0.95);
+    border-color: rgba(255,255,255,0.8);
+    box-shadow: 0 24px 60px rgba(70,60,140,0.25);
+}
+
+.login-close{
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--text-secondary);
+    transition: background 0.2s, color 0.2s;
+}
+.login-close:hover{
+    background: rgba(var(--accent-rgb), 0.15);
+    color: var(--text-primary);
+}
+
+.login-panel .settings-account{
+    gap: 0;
+}
+.login-panel .account-signed-out{
+    gap: 0;
+}
+
+/* ---- Heading ---- */
+.auth-heading{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.auth-title{
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--text-primary);
+    transition: opacity 0.18s, transform 0.18s;
+}
+.auth-subtitle{
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    transition: opacity 0.18s, transform 0.18s;
+}
+.auth-heading.swap .auth-title,
+.auth-heading.swap .auth-subtitle{
+    opacity: 0;
+    transform: translateY(-6px);
+}
+
+/* ---- Form ---- */
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.auth-field{
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--auth-field-bg);
+    border-radius: 18px;
+    box-shadow: var(--auth-field-shadow);
+    padding: 0 14px;
+    height: 52px;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.auth-field:focus-within{
+    box-shadow: var(--auth-field-focus);
+}
+.auth-field.invalid{
+    box-shadow: 0 0 0 2px rgba(255,110,110,0.7), var(--auth-field-shadow);
+}
+.auth-field.valid .auth-field-icon{
+    color: #4ade80;
+}
+.auth-field-icon{
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    color: var(--auth-icon);
+    margin-right: 10px;
+    transition: color 0.2s;
+}
+.auth-field input{
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-family: inherit;
+}
+.auth-field input::placeholder{
+    color: var(--text-muted);
+}
+/* stop the browser's autofill from painting a white box over the field */
+.auth-field input:-webkit-autofill{
+    -webkit-text-fill-color: var(--text-primary);
+    transition: background-color 9999s ease-out;
+}
+
+.auth-eye{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--auth-icon);
+    padding: 4px;
+    display: grid;
+    place-items: center;
+    transition: color 0.2s;
+}
+.auth-eye:hover{
+    color: var(--accent);
+}
+.auth-eye svg{
+    width: 18px;
+    height: 18px;
+}
+.auth-eye .eye-closed{
+    display: none;
+}
+.auth-eye.showing .eye-open{
+    display: none;
+}
+.auth-eye.showing .eye-closed{
+    display: block;
+}
+
+/* ---- Sign-up-only parts: collapsed in login mode, animate open ---- */
+.auth-field-name,
+.auth-signup-extra{
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    overflow: clip;
+    overflow-clip-margin: 10px; /* keeps the focus ring / shadow from being cut off */
+    visibility: hidden;
+    margin-top: -14px; /* cancels the flex gap while collapsed */
+    transition: max-height 0.38s ease, opacity 0.3s ease, margin 0.38s ease, visibility 0s linear 0.38s;
+}
+.auth-field-name{
+    box-shadow: none;
+    background: none;
+    padding: 0;
+}
+.auth-field-name .auth-field-icon{
+    margin-left: 14px;
+}
+.login-panel[data-mode="signup"] .auth-field-name,
+.login-panel[data-mode="signup"] .auth-signup-extra{
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+    transition: max-height 0.38s ease, opacity 0.35s ease 0.08s, margin 0.38s ease, visibility 0s;
+}
+.login-panel[data-mode="signup"] .auth-field-name{
+    max-height: 60px;
+}
+.login-panel[data-mode="signup"] .auth-signup-extra{
+    max-height: 260px;
+}
+/* give the collapsed name field its card look only when visible */
+.login-panel[data-mode="signup"] .auth-field-name{
+    background: var(--auth-field-bg);
+    box-shadow: var(--auth-field-shadow);
+    padding: 0 14px;
+}
+.login-panel[data-mode="signup"] .auth-field-name .auth-field-icon{
+    margin-left: 0;
+}
+.auth-signup-extra{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.auth-signup-extra .auth-field{
+    flex-shrink: 0;
+}
+
+/* Password strength */
+.auth-strength{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.auth-strength-bar{
+    flex: 1;
+    height: 6px;
+    border-radius: 6px;
+    background: rgba(128,128,160,0.25);
+    overflow: hidden;
+}
+.auth-strength-fill{
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 6px;
+    background: #ff6b6b;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+.auth-strength-label{
+    font-size: 11px;
+    color: var(--text-muted);
+    min-width: 78px;
+    text-align: right;
+}
+
+/* Live checklist */
+.auth-rules{
+    list-style: none;
+    margin: 0;
+    padding: 0 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.auth-rules li{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+.auth-rule-dot{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--text-muted);
+    box-sizing: border-box;
+    position: relative;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.auth-rules li.ok{
+    color: #4ade80;
+}
+.auth-rules li.ok .auth-rule-dot{
+    background: #4ade80;
+    border-color: #4ade80;
+    transform: scale(1.1);
+}
+.auth-rules li.ok .auth-rule-dot::after{
+    content: '';
+    position: absolute;
+    left: 3.5px;
+    top: 1.5px;
+    width: 3px;
+    height: 6px;
+    border: solid #fff;
+    border-width: 0 1.6px 1.6px 0;
+    transform: rotate(45deg);
+}
+
+/* Forgot password */
+.auth-forgot-row{
+    display: flex;
+    justify-content: flex-end;
+    max-height: 24px;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.3s ease;
+}
+.login-panel[data-mode="signup"] .auth-forgot-row{
+    max-height: 0;
+    opacity: 0;
+    margin-top: -14px;
+    pointer-events: none;
+}
+.login-panel .account-forgot-btn{
+    color: var(--accent);
+    font-size: 12.5px;
+    font-weight: 500;
+    text-decoration: none;
+}
+.login-panel .account-forgot-btn:hover{
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.login-panel .account-error{
+    text-align: center;
+    margin: 0;
+    min-height: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    font-size: 12.5px;
+    line-height: 1.4;
+    transition: max-height 0.25s ease, opacity 0.25s ease;
+}
+.login-panel .account-error:not(:empty){
+    max-height: 60px;
+    opacity: 1;
+}
+
+/* ---- Main button ---- */
+.auth-submit{
+    position: relative;
+    height: 52px;
+    border: none;
+    border-radius: 26px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    font-family: inherit;
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 1) 0%, rgba(var(--accent-rgb), 0.72) 100%);
+    box-shadow: var(--auth-btn-shadow);
+    transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
+    margin-top: 4px;
+}
+.auth-submit:hover{
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+}
+.auth-submit:active{
+    transform: translateY(1px) scale(0.99);
+}
+.auth-submit:disabled{
+    cursor: wait;
+    filter: saturate(0.8);
+}
+.auth-spinner{
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2.5px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -10px 0 0 -10px;
+    animation: auth-spin 0.7s linear infinite;
+}
+.auth-submit.loading .auth-submit-label{
+    opacity: 0;
+}
+.auth-submit.loading .auth-spinner{
+    display: block;
+}
+@keyframes auth-spin{
+    to{ transform: rotate(360deg); }
+}
+
+/* ---- Social ---- */
+.auth-divider{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0 16px;
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 1.2px;
+}
+.auth-divider::before,
+.auth-divider::after{
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(128,128,160,0.3);
+}
+.auth-social{
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+}
+.auth-social-btn{
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    background: var(--auth-social-bg);
+    box-shadow: var(--auth-social-shadow);
+    color: var(--text-primary);
+    transition: transform 0.15s, box-shadow 0.2s;
+}
+.auth-social-btn:hover{
+    transform: translateY(-2px);
+}
+.auth-social-btn:active{
+    transform: scale(0.95);
+}
+.auth-social-btn:disabled{
+    opacity: 0.5;
+    cursor: wait;
+}
+.auth-social-btn svg{
+    width: 24px;
+    height: 24px;
+}
+
+/* ---- Switch link ---- */
+.auth-switch{
+    margin: 22px 0 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.auth-switch-btn{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+}
+.auth-switch-btn:hover{
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.auth-switch-signup{
+    display: none;
+}
+.login-panel[data-mode="signup"] .auth-switch-login{
+    display: none;
+}
+.login-panel[data-mode="signup"] .auth-switch-signup{
+    display: inline;
+}
+
+/* ---- Signed-in view (if the modal is ever shown while signed in) ---- */
+.login-panel .account-signed-in{
+    align-items: center;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* ---- Success screen after creating an account ---- */
+.auth-success{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--auth-bg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+}
+.login-panel.is-success .auth-success{
+    opacity: 1;
+    pointer-events: auto;
+}
+.auth-success-check{
+    width: 84px;
+    height: 84px;
+    margin-bottom: 10px;
+}
+.auth-success-circle{
+    stroke: #4ade80;
+    stroke-width: 3;
+    stroke-dasharray: 151;
+    stroke-dashoffset: 151;
+}
+.auth-success-tick{
+    stroke: #4ade80;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+}
+.login-panel.is-success .auth-success-circle{
+    animation: auth-draw 0.6s ease forwards;
+}
+.login-panel.is-success .auth-success-tick{
+    animation: auth-draw 0.4s ease 0.5s forwards;
+}
+@keyframes auth-draw{
+    to{ stroke-dashoffset: 0; }
+}
+.auth-success-title{
+    margin: 0;
+    font-size: 22px;
+    color: var(--text-primary);
+}
+.auth-success-text{
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* ---- Shake on a failed attempt ---- */
+.login-panel.shake{
+    animation: auth-shake 0.4s ease;
+}
+@keyframes auth-shake{
+    0%, 100%{ transform: translateX(0); }
+    20%{ transform: translateX(-8px); }
+    40%{ transform: translateX(7px); }
+    60%{ transform: translateX(-5px); }
+    80%{ transform: translateX(3px); }
+}
+
+@media (max-width: 480px){
+    .login-panel{
+        width: min(380px, 94vw);
+        padding: 30px 18px 20px;
+    }
+    .auth-title{
+        font-size: 23px;
+    }
+}
+@media (prefers-reduced-motion: reduce){
+    .login-panel *, .login-panel{
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

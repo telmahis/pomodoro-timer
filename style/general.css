@@ -1,0 +1,87 @@
+:root{
+    --accent: rgb(240, 41, 41);
+    --accent-rgb: 240, 41, 41;
+
+    /* Base light/dark theme surfaces — toggled via data-theme on <html> */
+    --overlay-color: rgba(0,0,0,0.3);
+    --text-primary: #ffffff;
+    --text-secondary: #a8a8a8;
+    --text-muted: #777777;
+    --card-bg: rgba(255,255,255,0.05);
+    --card-border: rgba(255,255,255,0.08);
+    --card-bg-strong: rgba(255,255,255,0.08);
+    --card-border-strong: rgba(255,255,255,0.15);
+    --modal-bg: rgba(20,25,45,0.9);
+    --modal-overlay: rgba(5,5,15,0.6);
+    --input-bg: rgba(255,255,255,0.06);
+
+    /* The central timer circle stays a distinct focal surface in both
+       themes, but its own glass tint now follows the theme too. */
+    --timer-box-bg: rgba(20,30,60,0.35);
+    --timer-box-border: rgba(255,255,255,0.15);
+    --timer-box-tint: rgba(255,255,255,0.08);
+    --timer-box-tint-soft: rgba(255,255,255,0.05);
+
+    /* Customizable app background — overridden inline by settings-features.js.
+       Defaults to the app's original photo with no solid color beneath it. */
+    --bg-image: url(./9e23f0e8bacb5f03ad6418a3bdd1727b.jpg);
+    --bg-color: transparent;
+    --music-a: #ec4899;
+    --music-b: #8b5cf6;
+}
+
+html[data-theme="light"]{
+    --overlay-color: rgba(255,255,255,0.2);
+    --text-primary: #1a1a2e;
+    --text-secondary: #55555f;
+    --text-muted: #7a7a85;
+    --card-bg: rgba(255,255,255,0.6);
+    --card-border: rgba(20,20,35,0.12);
+    --card-bg-strong: rgba(255,255,255,0.7);
+    --card-border-strong: rgba(20,20,35,0.18);
+    --modal-bg: rgba(255,255,255,0.96);
+    --modal-overlay: rgba(30,30,45,0.35);
+    --input-bg: rgba(20,20,35,0.06);
+
+    --timer-box-bg: rgba(255,255,255,0.62);
+    --timer-box-border: rgba(20,20,35,0.15);
+    --timer-box-tint: rgba(20,20,35,0.07);
+    --timer-box-tint-soft: rgba(20,20,35,0.04);
+}
+
+html, body{
+    height: 100%;
+}
+
+body{
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--bg-color);
+    background-image:
+    linear-gradient(
+        var(--overlay-color),
+        var(--overlay-color)
+    ),
+    var(--bg-image);
+
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover;
+    background-attachment: fixed;
+    transition: background-color 0.4s ease;
+
+}
+
+nav{
+    flex-shrink: 0;
+}
