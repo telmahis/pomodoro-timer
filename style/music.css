@@ -1,5 +1,4 @@
 /* ===== Music Panel ===== */
-
 .music-panel{
     position: fixed;
     inset: 0;
@@ -32,6 +31,8 @@
 }
 /* ===== Music Dashboard ===== */
 .music-content-dashboard{
+    --music-a: #ec4899;
+    --music-b: #8b5cf6;
     --music-c: #3b82f6;
     width: min(1100px, 94vw);
     max-height: 88vh;
@@ -45,11 +46,10 @@
 }
 .music-header-title{
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 14px;
 }
 .music-header-icon{
-    display: block;
     width: 26px;
     height: 26px;
     color: var(--music-a);
@@ -59,32 +59,14 @@
     font-size: 22px;
     font-weight: 700;
     letter-spacing: normal;
-    color: white;
-    line-height: 1.1;
-    margin: 0;
 }
 .music-tagline{
-    align-items: flex-start;
     color: var(--text-muted);
     font-size: 12px;
-    margin: 10px 0 10px 0;
+    margin: 2px 0 0 0;
 }
 .music-close{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 26px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2.5px solid var(--card-border-strong);
-    border-color:var(--music-a);
-    cursor: pointer;
-    text-align: center;
-    box-shadow: 0 0 14px rgba(236,72,153,0.25);
-}
-.music-close:hover{
-    transform: scale(1.06) !important;
 }
 
 /* -- Source Tabs -- */
@@ -114,7 +96,6 @@
 }
 .music-tab:hover{
     color: var(--text-primary);
-    border-color: var(--music-a);
 }
 .music-tab.active{
     color: var(--text-primary);
@@ -191,7 +172,7 @@
     max-height: 260px;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: var(--music-a) var(--input-bg);
+    scrollbar-color: rgba(var(--accent-rgb), 0.6) var(--input-bg);
 }
 .music-list::-webkit-scrollbar{
     width: 7px;
@@ -396,7 +377,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     width: 30px;
     height: 30px;
     padding: 0;
@@ -426,8 +406,17 @@
     border: none !important;
     color: white;
     font-size: 18px;
-    text-align: center;
     box-shadow: 0 4px 16px rgba(139,92,246,0.45);
+}
+.music-play-pause svg{
+    width: 22px;
+    height: 22px;
+    color: white;
+}
+.music-prev svg,
+.music-next svg{
+    width: 20px;
+    height: 20px;
 }
 .music-play-pause:hover{
     transform: scale(1.06) !important;
@@ -529,4 +518,11 @@
     opacity: 0.01;
     pointer-events: none;
     z-index: -1;
+}
+
+/* Error / status message shown under the song title */
+.now-playing-subtitle.has-notice{
+    color: rgb(255,170,120);
+    font-weight: 500;
+    line-height: 1.4;
 }

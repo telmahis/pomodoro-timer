@@ -360,6 +360,10 @@ function initMusicPanel() {
         localStorage.setItem('pomodoro-music-volume', volumeSlider.value);
     });
 
+    setPlayIcon(false);
+    prevTrackBtn.innerHTML = ICON_PREV;
+    nextTrackBtn.innerHTML = ICON_NEXT;
+
     playPauseBtn.addEventListener('click', togglePlayPause);
     prevTrackBtn.addEventListener('click', () => step(-1));
     nextTrackBtn.addEventListener('click', () => step(1));
@@ -803,8 +807,13 @@ function stopLocal() {
     if (!bgAudio.paused) bgAudio.pause();
 }
 
+const ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
+const ICON_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4.2" height="14" rx="1.2"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.2"/></svg>';
+const ICON_PREV = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="2.4" height="14" rx="1"/><path d="M19 6.2v11.6a.8.8 0 0 1-1.25.66l-8.2-5.8a.8.8 0 0 1 0-1.32l8.2-5.8A.8.8 0 0 1 19 6.2z"/></svg>';
+const ICON_NEXT = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="16.6" y="5" width="2.4" height="14" rx="1"/><path d="M5 6.2v11.6a.8.8 0 0 0 1.25.66l8.2-5.8a.8.8 0 0 0 0-1.32l-8.2-5.8A.8.8 0 0 0 5 6.2z"/></svg>';
+
 function setPlayIcon(isPlaying) {
-    playPauseBtn.innerHTML = isPlaying ? '&#9208;' : '&#9654;';
+    playPauseBtn.innerHTML = isPlaying ? ICON_PAUSE : ICON_PLAY;
     playPauseBtn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
 }
 
